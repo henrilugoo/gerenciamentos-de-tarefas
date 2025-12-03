@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="/">Gerenciador de Tarefas - Henri Lugo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if (user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/tarefas">Tarefas</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Olá, <%= user.nome %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+              <li><a class="dropdown-item" href="/tarefas">Minhas tarefas</a></li>
+              <li><a class="dropdown-item" href="/categorias">Categorias</a></li>
+              <li><a class="dropdown-item" href="/prioridades">Prioridades</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Sair</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/registrar">Registrar</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar { padding: 0.8rem 1rem; }
+  .navbar .nav-link { color: rgba(255,255,255,0.95); }
+</style>

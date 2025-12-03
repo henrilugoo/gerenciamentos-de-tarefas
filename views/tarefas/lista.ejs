@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minhas Tarefas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="container py-4">
+    <div class="container-inner">
+      <h1 class="mb-3">Minhas Tarefas</h1>
+
+      <%- include('../partials/messages') %>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 mb-0">Lista</h2>
+        <a href="/tarefas/novo" class="btn btn-primary">Nova tarefa</a>
+      </div>
+
+      <section class="list mb-4">
+        <h2 class="h5">Lista</h2>
+
+        <div class="d-flex mb-3">
+          <a href="/tarefas/pesquisar" class="btn btn-outline-secondary me-2">🔍 Pesquisar</a>
+          <a href="/tarefas/lista" class="btn btn-outline-secondary">🔁 Atualizar</a>
+        </div>
+
+        <% if (!tarefas || tarefas.length === 0) { %>
+          <p class="text-muted">Nenhuma tarefa encontrada.</p>
+        <% } else { %>
+          <div class="row g-3">
+            <% tarefas.forEach(function(t){ %>
+              <div class="col-12">
+                <div class="task-card p-3 d-flex justify-content-between">
+                  <div>
+                    <strong><%= t.titulo %></strong>
+                    <div class="meta small"><%= t.descricao || '' %></div>
+                    <div class="meta small">
+                      Início: <%= t.dataInicio ? new Date(t.dataInicio).toLocaleDateString() : '-' %>
+                      · Vence: <%= t.dataVencimento ? new Date(t.dataVencimento).toLocaleDateString() : '-' %>
+                      · Prioridade: <%= t.id_prioridade ? t.id_prioridade.nivel : '-' %>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <% if (!t.concluida) { %>
+                      <form action="/tarefas/concluir/<%= t._id %>" method="post" class="d-inline me-2">
+                        <button type="submit" class="btn btn-sm btn-success">Concluir</button>
+                      </form>
+                    <% } else { %>
+                      <span class="badge bg-success me-2">Concluída</span>
+                      <form action="/tarefas/reabrir/<%= t._id %>" method="post" class="d-inline me-2">
+                        <button type="submit" class="btn btn-sm btn-outline-warning">Reabrir</button>
+                      </form>
+                    <% } %>
+                    <a href="/tarefas/editar/<%= t._id %>" class="btn btn-sm btn-outline-secondary me-2">Editar</a>
+                    <form action="/tarefas/deletar/<%= t._id %>" method="post" class="d-inline" onsubmit="return confirm('Excluir esta tarefa?');">
+                      <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </section>
+
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

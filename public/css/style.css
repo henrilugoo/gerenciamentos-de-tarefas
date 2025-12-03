@@ -1,0 +1,175 @@
+/* Estilos gerais */
+body {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		background: #f8f9fa;
+}
+
+main {
+		flex: 1;
+		max-width: 980px;
+		margin-left: auto;
+		margin-right: auto;
+}
+
+/* Estilos do navbar */
+.navbar {
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand {
+		font-weight: 600;
+		letter-spacing: 0.2px;
+}
+
+.navbar-nav .nav-link {
+		color: #fff;
+		font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+		color: #e6f0ff;
+}
+
+/* Estilos para cards de tarefas */
+.task-card {
+		border-radius: 10px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+		transition: transform 0.2s;
+}
+
+.task-card:hover {
+		transform: translateY(-2px);
+}
+
+/* Estilos para formulários */
+.form-container {
+		max-width: 500px;
+		margin: 0 auto;
+		padding: 20px;
+}
+
+/* Personalização de botões */
+.btn-primary {
+		border-radius: 5px;
+		padding: 8px 20px;
+}
+
+/* Botões de ação pequenos (ex.: + Categoria / + Prioridade) */
+.btn-action {
+	border-radius: 8px;
+	padding: 6px 10px;
+	font-size: 0.9rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border: 1px solid rgba(13,110,253,0.12);
+	color: #0d6efd;
+	background: rgba(13,110,253,0.04);
+}
+.btn-action:hover {
+	background: rgba(13,110,253,0.08);
+	text-decoration: none;
+}
+.btn-action.strong {
+	background: #0d6efd;
+	color: #fff;
+	border: none;
+}
+.btn-action-small {
+	padding: 4px 8px;
+	font-size: 0.85rem;
+}
+
+/* Classe para padronizar botões pequenos (mesma altura/largura visual) */
+.btn-equal {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px 10px;
+	font-size: 0.875rem;
+	line-height: 1;
+	height: 32px;
+}
+
+/* Estilos para o footer */
+.footer {
+		margin-top: auto;
+		box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero */
+.hero {
+	background: linear-gradient(90deg,#0d6efd 0%, #0b5ed7 100%);
+	border-radius: 8px;
+	padding: 48px 24px;
+	margin-bottom: 24px;
+}
+.hero .hero-icon {
+	font-size: 120px;
+	color: rgba(255,255,255,0.85);
+}
+
+/* Pequeno ajuste no container da navbar (marca esquerda, links direita) */
+.navbar .container {
+	align-items: center;
+}
+
+/* Mantém o main centralizado */
+main.container {
+	max-width: 1100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Task-card já existe; só garante contraste em hero */
+.task-card {
+	background: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+		.container {
+				padding-left: 15px;
+				padding-right: 15px;
+		}
+}
+
+@media (max-width: 767px) {
+	.navbar .container {
+		flex-direction: column;
+		gap: 8px;
+	}
+	.navbar-brand {
+		margin-bottom: 0;
+	}
+}
+
+/* Pequenos ajustes para as views do projeto */
+.container-inner { padding: 22px; background: #fff; border-radius: 10px; box-shadow: 0 6px 20px rgba(15,23,42,0.06) }
+.form { display:flex; flex-direction:column; gap:12px }
+.form input, .form button { padding:10px 12px; border-radius:6px; border:1px solid #e6e9ef }
+.form input:focus { outline: none; box-shadow: 0 0 0 0.15rem rgba(13,110,253,0.12); border-color: #0d6efd }
+.form button { border: none }
+.form-inline { display:flex; gap:8px; flex-wrap:wrap; align-items:center }
+.tarefas { list-style:none; padding:0 }
+.tarefa { padding:12px; border-bottom:1px solid #f1f3f5 }
+.tarefa.done { background:#f0fff4 }
+.meta { color:#6c757d; margin:6px 0 }
+.actions { display:flex; gap:8px; margin-top:8px }
+.inline { display:inline-flex; gap:8px; align-items:center }
+.danger { background:#dc3545; color:#fff; border:none; padding:8px 10px; cursor:pointer }
+.error { color:#dc3545 }
+
+/* Ajustes específicos para formulários de login/registro */
+.form-container { max-width: 520px; margin: 30px auto; }
+.form-container.container-inner { padding: 28px }
+.form-container .btn { width: 100%; }
+.form-container .form-control { width: 100%; }
+
+/* Harmoniza o hero e o form */
+.hero { background: linear-gradient(90deg,#0d6efd 0%, #0b5ed7 100%); border-radius: 12px; padding: 48px 32px; }
+.hero .hero-icon { font-size: 96px }
+
+

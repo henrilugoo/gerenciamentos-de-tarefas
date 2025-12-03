@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nova Tarefa</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="container py-4">
+    <div class="container-inner">
+      <h2>Criar nova tarefa</h2>
+
+      <%- include('../partials/messages') %>
+
+      <form action="/tarefas/criar" method="post" class="row g-3">
+        <div class="col-12">
+          <label class="form-label">Título</label>
+          <input name="titulo" placeholder="Título" class="form-control" required>
+        </div>
+        <div class="col-12">
+          <label class="form-label">Descrição</label>
+          <textarea name="descricao" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Início</label>
+          <input name="dataInicio" type="date" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Vencimento</label>
+          <input name="dataVencimento" type="date" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Prioridade</label>
+          <select name="id_prioridade" class="form-select">
+            <option value="">-- selecione --</option>
+            <% if (prioridades) { %>
+              <% prioridades.forEach(function(p){ %>
+                <option value="<%= p._id %>"><%= p.nivel %></option>
+              <% }) %>
+            <% } %>
+          </select>
+          <a href="/prioridades/novo?returnTo=/tarefas/novo" target="_blank" class="btn btn-sm btn-primary btn-equal ms-1 mt-1" title="Criar nova prioridade">Nova Prioridade</a>
+          <a href="/prioridades" target="_blank" class="btn btn-sm btn-outline-secondary btn-equal ms-1 mt-1" title="Gerenciar prioridades">Gerenciar prioridades</a>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Categoria</label>
+          <select name="categoria_id" class="form-select">
+            <option value="">-- selecione --</option>
+            <% if (typeof categorias !== 'undefined' && categorias) { %>
+              <% categorias.forEach(function(c){ %>
+                <option value="<%= c._id %>"><%= c.nome %></option>
+              <% }) %>
+            <% } %>
+          </select>
+          <a href="/categorias/novo?returnTo=/tarefas/novo" target="_blank" class="btn btn-sm btn-primary btn-equal ms-1 mt-1" title="Criar nova categoria">Nova Categoria</a>
+          <a href="/categorias" target="_blank" class="btn btn-sm btn-outline-secondary btn-equal ms-1 mt-1" title="Gerenciar categorias">Gerenciar categorias</a>
+        </div>
+        <div class="col-12 d-flex">
+          <a href="/tarefas" class="btn btn-secondary">Voltar</a>
+          <button class="btn btn-primary ms-auto" type="submit">Criar</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>
